@@ -4,14 +4,13 @@
  */
 package com.warpsample.ui;
 
-import com.shephertz.app42.gaming.multiplayer.client.WarpClient;
 import com.shephertz.app42.gaming.multiplayer.client.events.ChatEvent;
 import com.shephertz.app42.gaming.multiplayer.client.events.LobbyData;
+import com.shephertz.app42.gaming.multiplayer.client.events.MoveEvent;
 import com.shephertz.app42.gaming.multiplayer.client.events.RoomData;
 import com.shephertz.app42.gaming.multiplayer.client.events.UpdateEvent;
 import com.shephertz.app42.gaming.multiplayer.client.listener.NotifyListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
 
 /**
  *
@@ -24,6 +23,54 @@ public class NotificationListener implements NotifyListener {
 
     NotificationListener(WarpSampleUI container){
         this.container = container;
+    }
+    
+    @Override
+    public void onUserResumed(String str1,boolean b1,String str2)
+    {
+     container.appendResult("User Resumed "+str1+" "+str2);
+    }
+    
+    @Override
+    public void onUserPaused(String str1,boolean b1,String str2)
+    {
+     container.appendResult("User Paused "+str1+" "+str2);
+    }
+    
+    @Override
+    public void onGameStopped(String str1,String str2)
+    {
+     container.appendResult("Game Stopped "+str1+" "+str2);
+    }
+     
+    @Override
+    public void onGameStarted(String str1,String str2,String str3)
+    {
+      container.appendResult("Game Started "+str1+" "+str2+" "+str3);
+    }
+    
+    @Override
+    public void onMoveCompleted(MoveEvent event)
+    {
+     container.appendResult("Move Completed "+event.getMoveData().toString()+" "+event.getSender());
+    }
+    
+    @Override 
+    public void onUserChangeRoomProperty(RoomData rd, String str, HashMap<String, Object> hm, HashMap<String, String> hm1)
+    {
+      container.appendResult("Change Property "+rd.getName()+" "+str);
+    }
+    
+    @Override
+    public void onPrivateUpdateReceived(String str, byte[] bytes, boolean bln)
+    {
+      container.appendResult("onPrivateUpdate "+str+" "+bytes.toString());
+    }
+    
+    @Override
+    public void onPrivateChatReceived(String str1, String str2)
+    {
+       container.appendResult("onPrivateChat room "+str1+" chat"+str2);
     }
     
     @Override
@@ -65,12 +112,12 @@ public class NotificationListener implements NotifyListener {
         else{
             location = "room id"+event.getLocationId();
         }
-        container.appendChatResult(event.getSender()+" says "+event.getMessage()+ " in "+location);
+        container.appendResult(event.getSender()+" says "+event.getMessage()+ " in "+location);
     }
 
     @Override
     public void onUpdatePeersReceived(UpdateEvent event) {
-        container.appendChatResult("update received " +event.getUpdate());
+        container.appendResult("update received " +event.getUpdate());
     }
     
 }

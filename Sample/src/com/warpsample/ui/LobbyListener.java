@@ -22,22 +22,22 @@ public class LobbyListener implements LobbyRequestListener {
     
     @Override
     public void onJoinLobbyDone(LobbyEvent le) {
-        
+           container.appendResult("JoinLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
     public void onLeaveLobbyDone(LobbyEvent le) {
-        
+         container.appendResult("LeaveLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
     public void onSubscribeLobbyDone(LobbyEvent le) {
-        
+         container.appendResult("SubscribeLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
     public void onUnSubscribeLobbyDone(LobbyEvent le) {
-        
+         container.appendResult("UnSubscribeLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override

@@ -4,15 +4,13 @@
  */
 package com.warpsample.ui;
 
-import com.shephertz.app42.gaming.multiplayer.client.WarpClient;
 import com.shephertz.app42.gaming.multiplayer.client.command.WarpResponseResultCode;
 import com.shephertz.app42.gaming.multiplayer.client.events.AllRoomsEvent;
 import com.shephertz.app42.gaming.multiplayer.client.events.AllUsersEvent;
 import com.shephertz.app42.gaming.multiplayer.client.events.LiveUserInfoEvent;
+import com.shephertz.app42.gaming.multiplayer.client.events.MatchedRoomsEvent;
 import com.shephertz.app42.gaming.multiplayer.client.events.RoomEvent;
 import com.shephertz.app42.gaming.multiplayer.client.listener.ZoneRequestListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,22 +25,24 @@ public class ZoneListener implements ZoneRequestListener {
     }
 
     @Override
+    public void onGetMatchedRoomsDone(MatchedRoomsEvent event)
+    {
+      container.appendResult("GetMatchedRooms "+event.getRoomsData().toString());
+    }
+    
+    @Override
     public void onCreateRoomDone(RoomEvent event) {
-        if(event.getResult() != WarpResponseResultCode.SUCCESS){
-            container.appendErrorNotificationResult("Room creation failed!");
-        }
+       container.appendResult("onCreateRoom roomname "+event.getData().getName()+" id"+event.getData().getId());
     }
     @Override
     public void onDeleteRoomDone(RoomEvent event) {
-        
+      container.appendResult("DeleteRoom "+event.getData().toString());
     }
 
     @Override
     public void onGetAllRoomsDone(AllRoomsEvent event) {
-        
         for(int i=0; i<event.getRoomIds().length; i++){
-            container.getClient().getLiveRoomInfo(event.getRoomIds()[i]);
-            
+             container.appendResult("RoomId "+event.getRoomIds()[i]);
         }        
     }
 
@@ -50,8 +50,6 @@ public class ZoneListener implements ZoneRequestListener {
     public void onGetOnlineUsersDone(AllUsersEvent event) {
         
         for(int i=0; i<event.getUserNames().length; i++){
-            //String result = event.getUserNames()[i];
-            //container.appendResult(result);
             container.getClient().getLiveUserInfo(event.getUserNames()[i]);
         }
     }

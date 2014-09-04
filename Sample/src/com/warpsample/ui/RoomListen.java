@@ -25,29 +25,43 @@ public class RoomListen implements RoomRequestListener{
     RoomListen(WarpSampleUI container){
         this.container = container;
     }
+    
+    @Override
+    public void onUpdatePropertyDone(LiveRoomInfoEvent roominfo)
+    {
+      container.appendResult("UpdatePropertyDone "+roominfo.getProperties().size());
+    }
+     
+    @Override
+    public void onLockPropertiesDone(byte bt)
+    {
+      container.appendResult("LockPropertiesDone "+bt);
+    }
+    
+    @Override
+    public void onUnlockPropertiesDone(byte bt)
+    {
+      container.appendResult("UnlockPropertiesDone "+bt);
+    }
+    
     @Override
     public void onSubscribeRoomDone(RoomEvent event) {
-
+        container.appendResult("SubscribeRoom "+event.getData().getName());
     }
 
     @Override
     public void onUnSubscribeRoomDone(RoomEvent event) {
-        
+          container.appendResult("UnSubscribeRoom "+event.getData().getName());
     }
 
     @Override
     public void onJoinRoomDone(RoomEvent event) {
-        if(event.getResult() != WarpResponseResultCode.SUCCESS){
-            container.appendErrorNotificationResult("Room join failed!");
-        }
-        else{
-        container.appendResult("Room join Success");
-        }
+         container.appendResult("onJoinRoom "+event.getResult());
     }
 
     @Override
     public void onLeaveRoomDone(RoomEvent event) {
-        
+          container.appendResult("Leave Room "+event.getData().getName());
     }
 
     @Override
@@ -65,8 +79,6 @@ public class RoomListen implements RoomRequestListener{
 
     @Override
     public void onSetCustomRoomDataDone(LiveRoomInfoEvent event) {
-//        System.out.println(event.getJoinedUsers());
-//        container.appendResult("Room" +event.getData()+ " is" +event.getCustomData());
-
+       container.appendResult("CustomRoomData "+event.getData().getName()+" "+event.getCustomData().toString());
     }
 }

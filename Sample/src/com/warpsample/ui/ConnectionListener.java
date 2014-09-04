@@ -28,32 +28,18 @@ public class ConnectionListener implements ConnectionRequestListener{
     
     @Override
     public void onConnectDone(ConnectEvent event) {
-        if(event.getResult() == WarpResponseResultCode.SUCCESS){
-            container.appendResult("connection success");               
-        }
-        else{
-            container.appendErrorNotificationResult("connection error");        
-        }
+       container.appendResult("onConnectDone "+event.getResult());  
     }
-
+ 
     @Override
-    public void onJoinZoneDone(ConnectEvent event) {
-        if(event.getResult() == WarpResponseResultCode.SUCCESS){
-            container.appendResult("authentication success"); 
-        }
-        else{
-            container.appendErrorNotificationResult("authentication error");        
-        }     
+    public void onInitUDPDone(byte b)
+    {
+      container.appendResult("Init Udp" +b);   
     }
 
     @Override
     public void onDisconnectDone(ConnectEvent event) {
-        if(event.getResult() == WarpResponseResultCode.SUCCESS){
-            container.appendResult("Disconnect Done"); 
-        }
-        else{
-            container.appendErrorNotificationResult(" Can not disconnect");        
-        } 
+        container.appendResult("onDisconnectDone "+event.getResult());  
     }
     
 }
