@@ -4,6 +4,7 @@
  */
 package com.warpsample.ui;
 import com.shephertz.app42.gaming.multiplayer.client.WarpClient;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextArea;
@@ -40,9 +41,14 @@ public class WarpSampleUI extends javax.swing.JFrame {
         return this.theClient;
     }
     
-    public void appendResult(String result){
-        outPutArea.append("\n"+result); 
+    public void appendNotifyResult(String result){
+        notifyTextArea.append("\n"+result); 
     }
+    
+     public void appendResponseResult(String result){
+        responseTextArea.append("\n"+result); 
+    }
+     
     public void appendChatResult(String result){
         //chatOutputArea.append("\n"+result); 
     }
@@ -68,7 +74,7 @@ public class WarpSampleUI extends javax.swing.JFrame {
         joinRoomButton = new javax.swing.JButton();
         chatText = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        outPutArea = new javax.swing.JTextArea();
+        notifyTextArea = new javax.swing.JTextArea();
         connectButton = new javax.swing.JButton();
         notificationLabel = new javax.swing.JLabel();
         roomIdText = new javax.swing.JTextField();
@@ -95,6 +101,18 @@ public class WarpSampleUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        responseTextArea = new javax.swing.JTextArea();
+        notificationLabel1 = new javax.swing.JLabel();
+        txtProperyName_1 = new javax.swing.JTextField();
+        txtProperyValue = new javax.swing.JTextField();
+        btnUnsubscribe = new javax.swing.JButton();
+        btnUpdateProperty = new javax.swing.JButton();
+        btnLockProperty = new javax.swing.JButton();
+        btnUnlockProperty = new javax.swing.JButton();
+        txtRemovePropery = new javax.swing.JTextField();
+        txtProperyName = new javax.swing.JTextField();
+        txtProperyValue_1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,9 +140,9 @@ public class WarpSampleUI extends javax.swing.JFrame {
             }
         });
 
-        outPutArea.setColumns(20);
-        outPutArea.setRows(5);
-        jScrollPane1.setViewportView(outPutArea);
+        notifyTextArea.setColumns(20);
+        notifyTextArea.setRows(5);
+        jScrollPane1.setViewportView(notifyTextArea);
 
         connectButton.setText("Connect");
         connectButton.setName("btnConnect"); // NOI18N
@@ -307,6 +325,60 @@ public class WarpSampleUI extends javax.swing.JFrame {
             }
         });
 
+        responseTextArea.setColumns(20);
+        responseTextArea.setRows(5);
+        jScrollPane2.setViewportView(responseTextArea);
+
+        notificationLabel1.setText("Responses");
+
+        txtProperyName_1.setText("Property Name");
+
+        txtProperyValue.setText("Property Value");
+        txtProperyValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProperyValueActionPerformed(evt);
+            }
+        });
+
+        btnUnsubscribe.setText("Unsubscribe room");
+        btnUnsubscribe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnsubscribeActionPerformed(evt);
+            }
+        });
+
+        btnUpdateProperty.setText("update property");
+        btnUpdateProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdatePropertyActionPerformed(evt);
+            }
+        });
+
+        btnLockProperty.setText("lock property");
+        btnLockProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLockPropertyActionPerformed(evt);
+            }
+        });
+
+        btnUnlockProperty.setText("unlock property");
+        btnUnlockProperty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnlockPropertyActionPerformed(evt);
+            }
+        });
+
+        txtRemovePropery.setText("remove property");
+
+        txtProperyName.setText("Property Name");
+
+        txtProperyValue_1.setText("Property Value");
+        txtProperyValue_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProperyValue_1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -314,74 +386,109 @@ public class WarpSampleUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(roomIdText)
+                            .addComponent(subLobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(roomIdText)
-                                    .addComponent(subLobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(LobbyInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(joinLobbyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(leaveLobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(joinRoomButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(RoomInfoButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(subRoomButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(leaveRoomButton)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(getOnlineUsersButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(getAllRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(LobbyInfoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(joinLobbyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(leaveLobbyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(roomNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(createRoomButton))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(connectButton)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(diconnectButton)
-                                    .addComponent(GetUserInfoButton))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(userDataText, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                                    .addComponent(customRoomDataText))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(setCustomUserDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(setCustomRoomDataText, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(chatText, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(joinRoomButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(RoomInfoButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(subRoomButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(leaveRoomButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(getOnlineUsersButton)
+                                .addGap(17, 17, 17))
+                            .addComponent(btnUnsubscribe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notificationLabel)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(txtProperyName_1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtProperyValue_1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(notificationLabel1)
+                                        .addGap(18, 18, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnLockProperty, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnUnlockProperty, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jButton1)
+                                .addGap(10, 10, 10))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(chatText, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(txtProperyName))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(userDataText1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sendUpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(chatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(32, 32, 32)
                                 .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(17, 17, 17))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtProperyValue, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtRemovePropery, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdateProperty)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(notificationLabel)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(connectButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(diconnectButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(getAllRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(roomNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(createRoomButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(GetUserInfoButton)
+                                .addGap(23, 23, 23)
+                                .addComponent(customRoomDataText, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(userDataText, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(setCustomUserDataButton))
+                            .addComponent(setCustomRoomDataText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -393,7 +500,8 @@ public class WarpSampleUI extends javax.swing.JFrame {
                     .addComponent(diconnectButton)
                     .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userDataText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(setCustomUserDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setCustomUserDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getAllRoomButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -410,15 +518,15 @@ public class WarpSampleUI extends javax.swing.JFrame {
                     .addComponent(roomIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(RoomInfoButton)
                     .addComponent(leaveRoomButton)
-                    .addComponent(getAllRoomButton))
-                .addGap(18, 18, 18)
+                    .addComponent(btnUnsubscribe))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(subLobbyButton)
                     .addComponent(joinLobbyButton)
                     .addComponent(LobbyInfoButton)
                     .addComponent(leaveLobbyButton)
                     .addComponent(getOnlineUsersButton))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chatText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendUpdateButton)
@@ -427,13 +535,34 @@ public class WarpSampleUI extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(notificationLabel)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtProperyValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateProperty)
+                    .addComponent(txtRemovePropery, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProperyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLockProperty)
+                            .addComponent(btnUnlockProperty)
+                            .addComponent(txtProperyName_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProperyValue_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(notificationLabel)
+                                .addComponent(notificationLabel1))
+                            .addComponent(jButton1))
+                        .addGap(2, 2, 2)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
+
+        btnUnsubscribe.getAccessibleContext().setAccessibleName("Unsubscribe room");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -448,7 +577,7 @@ public class WarpSampleUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -487,7 +616,7 @@ public class WarpSampleUI extends javax.swing.JFrame {
        int i=0;
        int count=Integer.parseInt(userDataText1.getText());
        String message=chatText.getText();
-       outPutArea.append("\n count "+count+"message "+message);
+       //notifyTextArea.append("\n count "+count+"message "+message);
        for(i=0;i<count;i++)
         {
              theClient.sendUpdatePeers(message.getBytes());
@@ -534,7 +663,7 @@ public class WarpSampleUI extends javax.swing.JFrame {
         int i=0;
         int count=Integer.parseInt(userDataText1.getText());
         String message=chatText.getText();
-        outPutArea.append("\n count "+count+"message "+message);
+        //notifyTextArea.append("\n count "+count+"message "+message);
         for(i=0;i<count;i++)
         {
              theClient.sendChat(message);
@@ -564,14 +693,15 @@ public class WarpSampleUI extends javax.swing.JFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
-        outPutArea.setText("");
+        notifyTextArea.setText("");
+        responseTextArea.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSendPrivateChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendPrivateChatActionPerformed
        int i=0;
         int count=Integer.parseInt(userDataText1.getText());
         String message=chatText.getText();
-        outPutArea.append("\n count "+count+"message "+message);
+        //notifyTextArea.append("\n count "+count+"message "+message);
         for(i=0;i<count;i++)
         {
              theClient.sendPrivateChat(userText.getText(),message);
@@ -582,12 +712,52 @@ public class WarpSampleUI extends javax.swing.JFrame {
      int i=0;
         int count=Integer.parseInt(userDataText1.getText());
         String message=chatText.getText();
-        outPutArea.append("\n count "+count+"message "+message);
+        //notifyTextArea.append("\n count "+count+"message "+message);
+    
         for(i=0;i<count;i++)
         {
              theClient.sendPrivateUpdate(userText.getText(),message.getBytes());
         }
     }//GEN-LAST:event_btnSendPrivateUpdateActionPerformed
+
+    private void btnUnsubscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnsubscribeActionPerformed
+        // TODO add your handling code here:
+        theClient.unsubscribeRoom(roomIdText.getText());
+    }//GEN-LAST:event_btnUnsubscribeActionPerformed
+
+    private void btnUpdatePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdatePropertyActionPerformed
+         HashMap<String, Object> tableProperties=new HashMap<String, Object>();
+         if(!txtProperyName.getText().isEmpty())
+         tableProperties.put(txtProperyName.getText(), txtProperyValue.getText());
+         String[] str=new String[1];
+         if(!txtRemovePropery.getText().isEmpty())    
+             str[0]=txtRemovePropery.getText();
+        theClient.updateRoomProperties(roomIdText.getText(), tableProperties, str);
+    }//GEN-LAST:event_btnUpdatePropertyActionPerformed
+
+    private void btnLockPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockPropertyActionPerformed
+        // TODO add your handling code here:
+         HashMap<String, Object> tableProperties=new HashMap<String, Object>();
+          if(!txtProperyName_1.getText().isEmpty())
+         tableProperties.put(txtProperyName_1.getText(), txtProperyValue_1.getText());
+        theClient.lockProperties(tableProperties);
+    }//GEN-LAST:event_btnLockPropertyActionPerformed
+
+    private void btnUnlockPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockPropertyActionPerformed
+        // TODO add your handling code here:
+         String[] str=new String[1];
+         if(!txtProperyName_1.getText().isEmpty())    
+             str[0]=txtProperyName_1.getText();
+         theClient.unlockProperties(str);
+    }//GEN-LAST:event_btnUnlockPropertyActionPerformed
+
+    private void txtProperyValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProperyValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProperyValueActionPerformed
+
+    private void txtProperyValue_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProperyValue_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProperyValue_1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -634,6 +804,10 @@ public class WarpSampleUI extends javax.swing.JFrame {
     private javax.swing.JButton GetUserInfoButton;
     private javax.swing.JButton LobbyInfoButton;
     private javax.swing.JButton RoomInfoButton;
+    private javax.swing.JButton btnLockProperty;
+    private javax.swing.JButton btnUnlockProperty;
+    private javax.swing.JButton btnUnsubscribe;
+    private javax.swing.JButton btnUpdateProperty;
     private javax.swing.JButton chatButton;
     private javax.swing.JTextField chatText;
     private javax.swing.JButton connectButton;
@@ -647,12 +821,15 @@ public class WarpSampleUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton joinLobbyButton;
     private javax.swing.JButton joinRoomButton;
     private javax.swing.JButton leaveLobbyButton;
     private javax.swing.JButton leaveRoomButton;
     private javax.swing.JLabel notificationLabel;
-    private javax.swing.JTextArea outPutArea;
+    private javax.swing.JLabel notificationLabel1;
+    private javax.swing.JTextArea notifyTextArea;
+    private javax.swing.JTextArea responseTextArea;
     private javax.swing.JTextField roomIdText;
     private javax.swing.JTextField roomNameText;
     private javax.swing.JButton sendUpdateButton;
@@ -660,6 +837,11 @@ public class WarpSampleUI extends javax.swing.JFrame {
     private javax.swing.JButton setCustomUserDataButton;
     private javax.swing.JButton subLobbyButton;
     private javax.swing.JButton subRoomButton;
+    private javax.swing.JTextField txtProperyName;
+    private javax.swing.JTextField txtProperyName_1;
+    private javax.swing.JTextField txtProperyValue;
+    private javax.swing.JTextField txtProperyValue_1;
+    private javax.swing.JTextField txtRemovePropery;
     private javax.swing.JTextField userDataText;
     private javax.swing.JTextField userDataText1;
     private javax.swing.JTextField userText;

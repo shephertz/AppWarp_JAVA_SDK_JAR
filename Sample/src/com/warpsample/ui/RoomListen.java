@@ -29,39 +29,39 @@ public class RoomListen implements RoomRequestListener{
     @Override
     public void onUpdatePropertyDone(LiveRoomInfoEvent roominfo)
     {
-      container.appendResult("UpdatePropertyDone "+roominfo.getProperties().size());
+      container.appendResponseResult("UpdatePropertyDone "+roominfo.getProperties().size());
     }
      
     @Override
     public void onLockPropertiesDone(byte bt)
     {
-      container.appendResult("LockPropertiesDone "+bt);
+      container.appendResponseResult("LockPropertiesDone "+bt);
     }
     
     @Override
     public void onUnlockPropertiesDone(byte bt)
     {
-      container.appendResult("UnlockPropertiesDone "+bt);
+      container.appendResponseResult("UnlockPropertiesDone "+bt);
     }
     
     @Override
     public void onSubscribeRoomDone(RoomEvent event) {
-        container.appendResult("SubscribeRoom "+event.getData().getName());
+        container.appendResponseResult("SubscribeRoom "+event.getData().getName());
     }
 
     @Override
     public void onUnSubscribeRoomDone(RoomEvent event) {
-          container.appendResult("UnSubscribeRoom "+event.getData().getName());
+          container.appendResponseResult("UnSubscribeRoom "+event.getData().getName());
     }
 
     @Override
     public void onJoinRoomDone(RoomEvent event) {
-         container.appendResult("onJoinRoom "+event.getResult());
+         container.appendResponseResult("onJoinRoom "+event.getResult());
     }
 
     @Override
     public void onLeaveRoomDone(RoomEvent event) {
-          container.appendResult("Leave Room "+event.getData().getName());
+          container.appendResponseResult("Leave Room "+event.getData().getName());
     }
 
     @Override
@@ -69,16 +69,16 @@ public class RoomListen implements RoomRequestListener{
         if(event.getResult() == WarpResponseResultCode.SUCCESS){
             String[] users = event.getJoinedUsers();
             String result = "";
-           container.appendResult("Room Name " +event.getData().getName()+"(Room Id= " +event.getData().getId()+")(Custom Data= " +event.getCustomData() + ") Users are");
+           container.appendResponseResult("Room Name " +event.getData().getName()+"(Room Id= " +event.getData().getId()+")(Custom Data= " +event.getCustomData() + ") Users are");
             for(int i=0; i<users.length; i++){
                 result += " "+users[i];                
             }
-            container.appendResult(result);
+            container.appendResponseResult(result);
         }
     }
 
     @Override
     public void onSetCustomRoomDataDone(LiveRoomInfoEvent event) {
-       container.appendResult("CustomRoomData "+event.getData().getName()+" "+event.getCustomData().toString());
+       container.appendResponseResult("CustomRoomData "+event.getData().getName()+" "+event.getCustomData().toString());
     }
 }

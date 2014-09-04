@@ -22,22 +22,22 @@ public class LobbyListener implements LobbyRequestListener {
     
     @Override
     public void onJoinLobbyDone(LobbyEvent le) {
-           container.appendResult("JoinLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
+           container.appendResponseResult("JoinLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
     public void onLeaveLobbyDone(LobbyEvent le) {
-         container.appendResult("LeaveLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
+         container.appendResponseResult("LeaveLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
     public void onSubscribeLobbyDone(LobbyEvent le) {
-         container.appendResult("SubscribeLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
+         container.appendResponseResult("SubscribeLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
     public void onUnSubscribeLobbyDone(LobbyEvent le) {
-         container.appendResult("UnSubscribeLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
+         container.appendResponseResult("UnSubscribeLobby Name "+le.getInfo().getName()+"Id "+le.getInfo().getId()+"RoomOwner "+le.getInfo().getRoomOwner());
     }
 
     @Override
@@ -45,11 +45,11 @@ public class LobbyListener implements LobbyRequestListener {
         if(event.getResult() == WarpResponseResultCode.SUCCESS){
             String[] users = event.getJoinedUsers();
             String result = "";
-            container.appendResult("Users are");
+            container.appendResponseResult("Users are");
             for(int i=0; i<users.length; i++){
                 result += " "+users[i];                
             }
-            container.appendResult(result);
+            container.appendResponseResult(result);
         }
     }
     
