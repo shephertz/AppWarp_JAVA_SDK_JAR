@@ -71,7 +71,7 @@ public class ConnectionListener implements ConnectionRequestListener{
        {
          recoverTimer = new Timer();
          connectionTask = new ConnectionListener.RecoverConnectionTask(this);
-         recoverTimer.schedule(connectionTask,6000); 
+         recoverTimer.scheduleAtFixedRate(connectionTask,6000,6000); 
        }
     }
     
@@ -97,6 +97,7 @@ public class ConnectionListener implements ConnectionRequestListener{
 
         @Override
         public void run() {
+            container.appendResponseResult("In Run Method");
             if (owner.NumberOfRecoverAttemtps > 10) {
                  owner.NumberOfRecoverAttemtps=0;
                  owner.recoverTimer.cancel();
@@ -107,6 +108,7 @@ public class ConnectionListener implements ConnectionRequestListener{
                 owner.NumberOfRecoverAttemtps++;
                 WarpClient.getInstance().RecoverConnection();
             } catch (Exception e) {
+                 container.appendResponseResult("Exception "+e.getMessage());
             }
         }
     }

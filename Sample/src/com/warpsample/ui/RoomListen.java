@@ -69,11 +69,11 @@ public class RoomListen implements RoomRequestListener{
         if(event.getResult() == WarpResponseResultCode.SUCCESS){
             String[] users = event.getJoinedUsers();
             String result = "";
-           container.appendResponseResult("Room Name " +event.getData().getName()+"(Room Id= " +event.getData().getId()+")(Custom Data= " +event.getCustomData() + ") Users are");
-            for(int i=0; i<users.length; i++){
-                result += " "+users[i];                
-            }
-            container.appendResponseResult(result);
+           container.appendResponseResult(event.getData().getName()+"(Room Id= " +event.getData().getId()+") Total users "+users.length);
+            //for(int i=0; i<users.length; i++){
+            //    result += " "+users[i];                
+           // }
+           // container.appendResponseResult(result);
         }
     }
 
