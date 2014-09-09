@@ -23,7 +23,7 @@ public class WarpSampleUI extends javax.swing.JFrame {
     public WarpSampleUI() {
         initComponents();
         // Please replace with the API and Secret key pair received while registering.
-        WarpClient.initialize("97a41b5a10cc2cc3ec6d52a0c1b10d25a46175da91483e3c7e7769e22b6438a9", "ef75ba0658447c6802b08532f516be42ca5bfe03856b9926307bb2bf223c7b2d","50.112.116.44");
+        WarpClient.initialize("", "","");
         WarpClient.setRecoveryAllowance(60);
         try {
             theClient = WarpClient.getInstance();
