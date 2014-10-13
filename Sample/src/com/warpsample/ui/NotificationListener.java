@@ -28,13 +28,13 @@ public class NotificationListener implements NotifyListener {
     @Override
     public void onUserResumed(String str1,boolean b1,String str2)
     {
-     container.appendNotifyResult("User Resumed "+str1+" "+str2);
+     container.appendLeaveNotifyResult("User Resumed "+str1+" "+str2);
     }
     
     @Override
     public void onUserPaused(String str1,boolean b1,String str2)
     {
-     container.appendNotifyResult("User Paused "+str1+" "+str2);
+     container.appendLeaveNotifyResult("User Paused "+str1+" "+str2);
     }
     
     @Override
@@ -85,7 +85,7 @@ public class NotificationListener implements NotifyListener {
 
     @Override
     public void onUserLeftRoom(RoomData event, String username) {
-        container.appendNotifyResult(username+" left room "+event.getName());
+        container.appendLeaveNotifyResult(username+" left room "+event.getName());
     }
 
     @Override
